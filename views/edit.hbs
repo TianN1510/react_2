@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chỉnh sửa sản phẩm</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 800px;
+            margin: 20px 0;
+        }
+
+        form>div {
+            flex: 1;
+            min-width: 150px;
+            margin: 10px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            width: auto;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            padding: 10px 20px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: darkblue;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h1>Chỉnh sửa sản phẩm</h1>
+
+        <form action="/edit/{{:id}}" method="post">
+            <!-- Hidden input to pass product ID -->
+            <input type="hidden" name="id" value="{{id}}" />
+
+            <div>
+                <input placeholder="Nhập tên" name="name" value="{{name}}" required />
+            </div>
+            <div>
+                <input placeholder="Nhập giá" name="price" value="{{price}}" required type="number" min="0" />
+            </div>
+            <div>
+                <input placeholder="Nhập số lượng" name="quantity" value="{{quantity}}" required type="number"
+                    min="1" />
+            </div>
+            <div>
+                <input placeholder="Nhập URL hình ảnh" name="image" value="{{image}}" required />
+            </div>
+            <div>
+                <p>Loại sản phẩm</p>
+                <select name="category" required>
+                    {{#each listCate}}
+                    <option value="{{_id}}" {{#ifEquals _id ../product_react}}selected{{/ifEquals}}>{{name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div>
+                <input type="submit" title="Submit" value="Lưu thay đổi" />
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

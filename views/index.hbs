@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+        .table {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .table-header,
+        .table-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .table-header {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .table-cell {
+            flex: 1;
+            text-align: left;
+        }
+
+        .table-cell img {
+            max-width: 100px;
+            height: auto;
+        }
+
+        .table-cell.actions {
+            flex: 0.5;
+            text-align: center;
+        }
+
+        .btn {
+            padding: 5px 10px;
+            margin: 2px;
+            text-decoration: none;
+            color: white;
+            background-color: blue;
+            border-radius: 5px;
+        }
+
+        .btn-secondary {
+            background-color: gray;
+        }
+
+        .btn-danger {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>{{title}}</h1>
+        <a href="/add" class="btn btn-primary">Thêm</a>
+        <div class="table">
+            <div class="table-header">
+                <div class="table-cell">ID</div>
+                <div class="table-cell">Tên sản phẩm</div>
+                <div class="table-cell">Giá</div>
+                <div class="table-cell">Hình Ảnh</div>
+                <div class="table-cell actions">Thao tác</div>
+            </div>
+            {{#each list}}
+            <div class="table-row">
+                <div class="table-cell">{{_id}}</div>
+                <div class="table-cell">{{name}}</div>
+                <div class="table-cell">{{price}}</div>
+                <div class="table-cell">
+                    <img src="/images/{{image}}" alt="{{name}}">
+                </div>
+                <div class="table-cell actions">
+                    <a href="/edit/{{_id}}" class="btn btn-secondary">Sửa</a>
+                    <a href="/delete/{{_id}}" class="btn btn-danger">Xóa</a>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</body>
+
+</html>
